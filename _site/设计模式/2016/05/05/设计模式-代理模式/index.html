@@ -1,0 +1,1238 @@
+
+<!doctype html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/assets/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/assets/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/assets/css/main.css?v=5.1.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="设计模式,代理," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="强迫自己写点什么之博客" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/assets/favicon.ico?v=5.1.1" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<meta name="description" content="代理模式">
+<meta name="keywords" content="设计模式, 代理">
+<meta property="og:type" content="article">
+<meta property="og:title" content="设计模式-代理模式">
+<meta property="og:url" content="http://localhost:4000/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016/05/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+<meta property="og:site_name" content="强迫自己写点什么之博客">
+<meta property="og:description" content="代理模式">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="设计模式-代理模式">
+<meta name="twitter:description" content="代理模式">
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://localhost:4000/"/>
+
+
+
+
+
+  <title>设计模式-代理模式 | 强迫自己写点什么之博客</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"> <div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">强迫自己写点什么之博客</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+<div id="posts" class="posts-expand">
+  
+  
+
+  
+
+  
+  
+  
+
+  <article class="post post-type- " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://localhost:4000/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/2016/05/05/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="leeYu">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/assets/images/1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="强迫自己写点什么之博客">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+          
+          
+            设计模式-代理模式
+          
+        </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-05-05T00:00:00+08:00">
+                2016-05-05
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/category/#/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" itemprop="url" rel="index">
+                    <span itemprop="name">设计模式</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+            
+                <div class="post-description">
+                    
+                </div>
+            
+          
+
+        </div>
+      </header>
+    
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+  
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <h2 id="代理模式">代理模式</h2>
+
+<blockquote>
+  <p>代理(Proxy)是一种设计模式,提供了对目标对象另外的访问方式；即通过代理对象访问目标对象。这样做的好处是:可以在目标对象实现的基础上,增强额外的功能操作,即扩展目标对象的功能。
+这里使用到编程中的一个思想：不要随意去修改别人已经写好的代码或者方法,如果需改修改,可以通过代理的方式来扩展该方法。</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13</pre></td><td class="code"><pre class="highlight"><code>//移动接口
+public interface Moveable {
+
+	public void move();
+
+}
+//汽车实现类
+public class Car implements Moveable{
+	@Override
+	public void move() {	
+		System.out.println("汽车行驶中");	
+	}
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="静态代理">静态代理</h3>
+<h4 id="继承方式">继承方式</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>public class Car2 extends Car{
+	@Override
+	public void move() {	
+		System.out.println("日志开始");
+		System.out.println("汽车行驶中");	
+		System.out.println("日志结束");
+	}
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>我们可以看到，如果我们想增加别的功能，需要在新声明Car3,Car4等等.比如time功能，time和log的前后顺序不同也影响我们对类的构造。</p>
+<h4 id="聚合方式">聚合方式</h4>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>public class CarTimeProxy implements Moveable {
+
+	public CarTimeProxy(Moveable m) {
+		super();
+		this.m = m;
+	}
+
+	private Moveable m;
+
+	@Override
+	public void move() {
+		long starttime = System.currentTimeMillis();
+		System.out.println("汽车开始行驶....");
+		m.move();
+		long endtime = System.currentTimeMillis();
+		System.out.println("汽车结束行驶....  行驶时间为:" 
+			+ (endtime - starttime) + "毫秒!");
+	}
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>我们可以看到，我们调用此次代理只需要:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3</pre></td><td class="code"><pre class="highlight"><code>Car car = new Car();
+Moveable m = new CarTimeProxy(car);
+m.move();
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>假如我们还需要一个日志代理类<code class="highlighter-rouge">CarLogProxy()</code>,只需要:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4</pre></td><td class="code"><pre class="highlight"><code>Car car = new Car();
+Moveable m1 = new CarTimeProxy(car);
+Moveable m2 = new CarLogProxy(m1);
+m2.move(); 可以有效减少类的数量。
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p><strong>结论</strong>:聚合比继承更适合代理模式</p>
+
+<h3 id="动态代理">动态代理</h3>
+
+<h4 id="jdk动态代理">JDK动态代理</h4>
+<blockquote>
+  <ul>
+    <li>只能代理实现了接口的类</li>
+    <li>没有实现接口的类不能使用JDK动态代理</li>
+  </ul>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16</pre></td><td class="code"><pre class="highlight"><code>import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Proxy;
+
+public class proxyOfJDK {
+
+	public static void main(String[] main){
+		Car car = new Car();
+		InvocationHandler h = new TimeHandler(car);
+		Class cls  = car.getClass();
+	
+		Moveable m ＝(Moveable)Proxy.newProxyInstance(cls.getClassLoader(), 
+								cls.getInterfaces(), h);
+		m.move();
+	}
+
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>需要实现InvocationHandler接口：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36</pre></td><td class="code"><pre class="highlight"><code>import java.lang.reflect.InvocationHandler;
+import java.lang.reflect.Method;
+
+public class TimeHandler implements InvocationHandler {
+	//目标对象
+	private Object target;
+	
+	public TimeHandler(Object target) {
+		super();
+		this.target = target;
+	}
+	
+	/**
+	 * proxy 代理对象
+	 * method 实现方法
+	 * args 方法参数
+	 */
+	@Override
+	public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
+		// TODO Auto-generated method stub
+		
+		System.out.println("汽车开始行驶...\t\n");
+		//Class clazz = proxy.getClass();
+		//System.out.println(clazz.getName());
+		//Method[] m = clazz.getDeclaredMethods();
+		//for (Method method2 : m) {
+		//	System.out.println(method2.getName());
+		//}
+		
+		method.invoke(target);
+		System.out.println("汽车结束行驶...");
+		
+		return null;
+	}
+
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<blockquote>
+  <p>生成的代理对象的class为<code class="highlighter-rouge">com.sun.proxy.$Proxy0</code></p>
+</blockquote>
+
+<blockquote>
+  <p>2016-6-27回顾心得：<strong>此模式如果接口默认继承Object，那么toString()等函数也被加上了代理。即通过method.invoke(target);方法，那么所有的method都将添加代理。</strong></p>
+</blockquote>
+
+<h4 id="cjlib动态代理">CJLIB动态代理</h4>
+<blockquote>
+  <ul>
+    <li>针对类来实现动态代理的</li>
+    <li>对指定目标类产生一个子类，通过方法拦截技术拦截所有父类的方法调用
+火车类：</li>
+  </ul>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7</pre></td><td class="code"><pre class="highlight"><code>public class Train {
+	
+	public void move(){
+		System.out.println("火车行驶中");
+	}
+
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>需要实现MethodInterceptor接口</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38</pre></td><td class="code"><pre class="highlight"><code>import java.lang.reflect.Method;
+
+import net.sf.cglib.proxy.Enhancer;
+import net.sf.cglib.proxy.MethodInterceptor;
+import net.sf.cglib.proxy.MethodProxy;
+
+public class proxyOfCJLIB implements MethodInterceptor {
+
+	private Enhancer enhancer = new Enhancer();
+	
+	public Object getProxy(Class clazz){
+		//设置创建子类的类
+		enhancer.setSuperclass(clazz);
+		enhancer.setCallback(this);
+		
+		return enhancer.create();
+	}
+	
+	/**
+	 * 拦截所有目标类的调用
+	 * obj 目标类的实例
+	 * m 目标方法的反射对象
+	 * args 方法的参数
+	 * proxy 代理类的实例
+	 */
+	@Override
+	public Object intercept(Object object, Method m, Object[] arg2, 
+			MethodProxy proxy) throws Throwable {
+		System.out.println("日志开始");
+		//代理类调用父类的方法
+		proxy.invokeSuper(object, arg2);
+		
+		System.out.println("日志结束");
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>测试：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8</pre></td><td class="code"><pre class="highlight"><code>public class Client {
+	
+	public static void main(String[] args){
+		proxyOfCJLIB proxy = new proxyOfCJLIB();
+		Train t = (Train) proxy.getProxy(Train.class);
+		t.move();
+	}
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<h3 id="动态代理实现思路">动态代理实现思路</h3>
+<blockquote>
+
+  <p>实现功能：通过Proxy的newProxyInstance返回代理对象</p>
+
+  <ol>
+    <li>声明一段源码（动态代理产生）</li>
+    <li>编译源码（JDK Compiler API）,产生新的类（代理类）</li>
+    <li>讲这个类load到内存当中，产生一个新的对象（代理对象）</li>
+    <li>return 代理对象</li>
+  </ol>
+
+  <p>Proxy类</p>
+</blockquote>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19<br/>20<br/>21<br/>22<br/>23<br/>24<br/>25<br/>26<br/>27<br/>28<br/>29<br/>30<br/>31<br/>32<br/>33<br/>34<br/>35<br/>36<br/>37<br/>38<br/>39<br/>40<br/>41<br/>42<br/>43<br/>44<br/>45<br/>46<br/>47<br/>48<br/>49<br/>50<br/>51<br/>52<br/>53<br/>54<br/>55<br/>56<br/>57<br/>58<br/>59<br/>60<br/>61<br/>62<br/>63<br/>64<br/>65<br/>66<br/>67<br/>68<br/>69<br/>70<br/>71<br/>72<br/>73<br/>74<br/>75<br/>76<br/>77<br/>78<br/>79<br/>80<br/>81<br/>82<br/>83<br/>84<br/>85<br/>86<br/>87<br/>88<br/>89<br/>90<br/>91<br/>92<br/>93<br/>94<br/>95<br/>96<br/>97<br/>98<br/>99<br/>100<br/>101<br/>102<br/>103<br/>104<br/>105<br/>106<br/>107<br/>108<br/>109<br/>110<br/>111<br/>112</pre></td><td class="code"><pre class="highlight"><code>package cn.tju.scs.proxy;
+
+import java.io.File;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Method;
+
+import javax.tools.JavaCompiler;
+import javax.tools.JavaCompiler.CompilationTask;
+import javax.tools.StandardJavaFileManager;
+import javax.tools.ToolProvider;
+
+import org.apache.commons.io.FileUtils;
+
+import cn.tju.scs.Car;
+
+public class Proxy {
+
+	public static Object newProxyInstance(Class infce,InvocationHandler h) throws Exception{
+		
+		String rt = "\t\n";
+		String methodStr ="";
+		for (Method m : infce.getMethods()) {
+			methodStr += "	@Override" + rt + 
+			"	public void "+m.getName()+"() {" + rt + 
+			"   try{" + rt + 
+			"	Method md = " + infce.getName() + ".class.getMethod(\""+m.getName()+"\");" + rt + 
+			"   h.invoke(this,md);"+ rt + 
+			"   }catch(Exception e){ e.printStackTrace();}" + rt + 
+			"	}";
+		}
+		String str = 
+		"package cn.tju.scs.proxy;" + rt + 
+		"import java.lang.reflect.Method;"+ rt + 
+		"import cn.tju.scs.proxy.InvocationHandler;" + rt + 
+		"public class $Proxy0 implements "+ infce.getName()+"{" + rt + 
+		"	public $Proxy0(InvocationHandler h) {" + rt + 
+		"		super();" + rt + 
+		"		this.h = h;" + rt + 
+		"	}" + rt + 
+
+		"   private InvocationHandler h;" + rt + 
+		
+		
+		methodStr + rt + 
+		"}";
+		
+		String filename = System.getProperty("user.dir")+"/bin/cn/tju/scs/proxy/$Proxy0.java";
+
+		File file = new File(filename);
+		FileUtils.writeStringToFile(file, str);
+		
+		//编译
+		//拿到编译器
+		JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
+		//第一个参数：监听器
+		//文件管理者
+		StandardJavaFileManager fileMgr = 
+				compiler.getStandardFileManager(null, null, null);
+		//获取文件
+		Iterable units = fileMgr.getJavaFileObjects(filename);
+		//编译任务
+		CompilationTask t = compiler.getTask(null, fileMgr, null, null, null, units);
+		//进行编译
+		t.call();
+		fileMgr.close();
+		
+		//load到内存
+		ClassLoader cl = ClassLoader.getSystemClassLoader();
+		Class c = cl.loadClass("cn.tju.scs.proxy.$Proxy0"); 
+		
+		Constructor ctr = c.getConstructor(InvocationHandler.class);
+		
+		return ctr.newInstance(h);
+	}
+
+} &gt;TimeHandler
+
+package cn.tju.scs.proxy;
+
+import java.lang.reflect.Method;
+
+public class TimeHandler implements InvocationHandler {
+
+	private Object target;
+	
+	
+	
+	public TimeHandler(Object target) {
+		super();
+		this.target = target;
+	}
+
+
+
+	@Override
+	public void invoke(Object obj, Method m) {
+		// TODO Auto-generated method stub
+		try {
+			long starttime = System.currentTimeMillis();
+			System.out.println("汽车开始行驶....");
+			m.invoke(target);
+			long endtime = System.currentTimeMillis();
+			System.out.println("汽车结束行驶....  行驶时间为:"+ 
+			+ (endtime - starttime) + "毫米!");
+
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>生成的代理类$Proxy0:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17</pre></td><td class="code"><pre class="highlight"><code>package cn.tju.scs.proxy;	
+import java.lang.reflect.Method;	
+import cn.tju.scs.proxy.InvocationHandler;	
+public class $Proxy0 implements cn.tju.scs.Moveable{	
+	public $Proxy0(InvocationHandler h) {	
+		super();	
+		this.h = h;	
+	}	
+	private InvocationHandler h;	
+	@Override	
+	public void move() {	
+	try{	
+	Method md = cn.tju.scs.Moveable.class.getMethod("move");	
+	h.invoke(this,md);	
+	}catch(Exception e){ e.printStackTrace();}	
+	}	
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>测试类：</p>
+
+<div class="highlighter-rouge"><div class="highlight"><table style="margin: 0px"><tbody><tr><td class="gutter"><pre>1<br/>2<br/>3<br/>4<br/>5<br/>6<br/>7<br/>8<br/>9<br/>10<br/>11<br/>12<br/>13<br/>14<br/>15<br/>16<br/>17<br/>18<br/>19</pre></td><td class="code"><pre class="highlight"><code>package cn.tju.scs.proxy;
+
+import cn.tju.scs.Car;
+import cn.tju.scs.Moveable;
+
+public class Client {
+
+	public static void main(String[] args) throws Exception {
+		// TODO Auto-generated method stub
+		Car car = new Car();
+		InvocationHandler h = new TimeHandler(car);
+		Moveable m = (Moveable) Proxy.newProxyInstance(Moveable.class,h);
+		m.move();
+
+		
+
+	}
+
+}
+</code></pre></td></tr></tbody></table></div>
+</div>
+
+<p>通过源代码可以看出来，动态代理</p>
+
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            
+            <a href="/tag/#/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F" rel="tag"># 设计模式</a>
+          
+            
+            <a href="/tag/#/%E4%BB%A3%E7%90%86" rel="tag"># 代理</a>
+          
+        </div>
+      
+
+      
+      
+      
+      
+      
+
+      
+      
+      
+
+      
+    </footer>
+  </article>
+
+  <div class="post-spread">
+    
+  </div>
+</div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+        
+        
+        
+
+
+
+
+
+
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/assets/images/1.jpg"
+               alt="leeYu" />
+          <p class="site-author-name" itemprop="name">leeYu</p>
+           
+              <p class="site-description motion-element" itemprop="description">It's NULL.</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-categories">
+              <a href="/categories/">
+                <span class="site-state-item-count">1</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/">
+                <span class="site-state-item-count">2</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+        
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+
+
+
+
+
+
+
+            
+              <div class="post-toc-content">
+    <ol class=nav>
+      <li class="nav-item nav-level-2"> <a class="nav-link" href="#代理模式"> <span class="nav-number">1</span> <span class="nav-text">代理模式</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-3"> <a class="nav-link" href="#静态代理"> <span class="nav-number">1.1</span> <span class="nav-text">静态代理</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#继承方式"> <span class="nav-number">1.1.1</span> <span class="nav-text">继承方式</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#聚合方式"> <span class="nav-number">1.1.2</span> <span class="nav-text">聚合方式</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#动态代理"> <span class="nav-number">1.2</span> <span class="nav-text">动态代理</span> </a> <ol class="nav-child"> <li class="nav-item nav-level-4"> <a class="nav-link" href="#jdk动态代理"> <span class="nav-number">1.2.1</span> <span class="nav-text">JDK动态代理</span> </a> </li> <li class="nav-item nav-level-4"> <a class="nav-link" href="#cjlib动态代理"> <span class="nav-number">1.2.2</span> <span class="nav-text">CJLIB动态代理</span> </a> </li> </ol> </li> <li class="nav-item nav-level-3"> <a class="nav-link" href="#动态代理实现思路"> <span class="nav-number">1.3</span> <span class="nav-text">动态代理实现思路</span> </a> </li> </ol> </li>
+    </ol>
+  </div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  
+  &copy; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">leeYu</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://jekyllrb.com">Jekyll</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/simpleyyt/jekyll-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+   
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  
+  
+  
+  
+  <script type="text/javascript" src="/assets/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/utils.js?v=5.1.1"></script>
+
+  <script type="text/javascript" src="/assets/js/src/motion.js?v=5.1.1"></script>
+
+
+
+  
+  
+
+  <script type="text/javascript" src="/assets/js/src/scrollspy.js?v=5.1.1"></script>
+<script type="text/javascript" src="/assets/js/src/post-details.js?v=5.1.1"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/assets/js/src/bootstrap.js?v=5.1.1"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+
+    
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+  
+
+  
+  
+
+
+  
+
+  
+
+  
+
+</body>
+</html>
+
