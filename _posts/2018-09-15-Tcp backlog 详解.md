@@ -1,5 +1,5 @@
 ---
-title: [TCP/IP] Tcp backlog 详解
+title: Tcp backlog 详解
 data: 2018-09-15
 categories:
 - TCP/IP
@@ -14,7 +14,7 @@ tags:
 
 > 在调用系统底层的`socket`方法`int listen(int sockfd, int backlog)`时，有一个`backlog`参数。如果想了解这个参数的作用，那么就需要回顾一下tcp的连接过程。
 
-> ![](https://images2015.cnblogs.com/blog/927655/201612/927655-20161215133843776-605308204.png)
+> ![](https://leeyusky.github.io/assets/images/tcp_backlog.png)
 > 如图，在内核系统中维护了两个队列，分别是`syns queue`和`accept queue`。
 > 
 > * **syns queue**：用于保存半连接状态的请求（即状态为`SYN RECEIVED`的连接进入此队列）。其大小通过`/proc/sys/net/ipv4/tcp_max_syn_backlog`指定。
