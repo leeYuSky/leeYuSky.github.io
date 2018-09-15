@@ -1,4 +1,3 @@
-
 ---
 title: [TCP/IP] Tcp backlog 详解
 data: 2018-09-15
@@ -11,7 +10,7 @@ tags:
 
 ## Tcp backlog 详解
 
-### 答疑解惑
+### 详解
 
 > 在调用系统底层的`socket`方法`int listen(int sockfd, int backlog)`时，有一个`backlog`参数。如果想了解这个参数的作用，那么就需要回顾一下tcp的连接过程。
 
