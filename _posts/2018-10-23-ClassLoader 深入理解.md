@@ -1,5 +1,5 @@
 ---
-title: [ClassLoader] 深入理解
+title: ClassLoader 深入理解
 data: 2018-10-23
 categories:
 - 类加载
