@@ -16,7 +16,7 @@ tags:
 
 每个编写的`.java`拓展名类文件都存储着需要执行的程序逻辑，这些`.java`文件经过`Java`编译器编译成拓展名为`.class`的文件，`.class`文件中保存着`Java`代码经转换后的虚拟机指令，当需要使用某个类时，虚拟机将会加载它的`.class`文件，并创建对应的`class`对象，将`class`文件加载到虚拟机的内存，这个过程称为类加载。类加载的过程如下：
 
-![](../assets/images/类加载过程.png)
+![](https://leeyusky.github.io/assets/images/类加载过程.png)
 
 * **加载**：类加载过程的一个阶段：通过一个类的完全限定查找此类字节码文件，并利用字节码文件创建一个 Class 对象。
 * **验证**：目的在于确保 Class 文件的字节流中包含信息符合当前虚拟机要求，不会危害虚拟机自身安全。主要包括四种验证，文件格式验证，元数据验证，字节码验证，符号引用验证。
@@ -44,7 +44,7 @@ tags:
 
 `sun.misc.Launcher`,它是一个 java 虚拟机的入口应用，该类里声明了`sun.misc.Launcher$ExtClassLoader`和`sun.misc.Launcher$AppClassLoader`。
 
-```
+```java
 public class Launcher {
     private static URLStreamHandlerFactory factory = new Launcher.Factory();
     private static Launcher launcher = new Launcher();
@@ -84,11 +84,11 @@ public class Launcher {
 
 双亲委派模式是在 Java 1.2 后引入的，其工作原理的是，如果一个类加载器收到了类加载请求，它并不会自己先去加载，而是把这个请求委托给父类的加载器去执行，如果父类加载器还存在其父类加载器，则进一步向上委托，依次递归，请求最终将到达顶层的启动类加载器，如果父类加载器可以完成类加载任务，就成功返回，倘若父类加载器无法完成此加载任务，子加载器才会尝试自己去加载，这就是双亲委派模式。
 
-![](../assets/images/双亲委托机制.png)
+![](https://leeyusky.github.io/assets/images/双亲委托机制.png)
 
 采用双亲委派模式的是好处是 Java 类随着它的类加载器一起具备了一种带有优先级的层次关系，通过这种层级关可以避免类的重复加载，当父亲已经加载了该类时，就没有必要子 ClassLoader 再加载一次。其次是考虑到安全因素，java 核心 api 中定义类型不会被随意替换，假设通过网络传递一个名为`java.lang.Integer`的类，通过双亲委托模式传递到启动类加载器，而启动类加载器在核心`Java API`发现这个名字的类，发现该类已被加载，并不会重新加载网络传递的过来的`java.lang.Integer`，而直接返回已加载过的`Integer.class`，这样便可以防止核心 API 库被随意篡改。可能你会想，如果我们在`classpath`路径下自定义一个名为`java.lang.SingleInterge`类(该类是胡编的)呢？该类并不存在`java.lang`中，经过双亲委托模式，传递到启动类加载器中，由于父类加载器路径下并没有该类，所以不会加载，将反向委托给子类加载器加载，最终会通过系统类加载器加载该类。但是这样做是不允许，因为`java.lang`是核心 API 包，需要访问权限，强制加载将会报出如下异常：
 
-```
+```java
 Exception in thread "main" java.lang.SecurityException: Prohibited package name: java.lang
 ```
 
@@ -96,11 +96,11 @@ Exception in thread "main" java.lang.SecurityException: Prohibited package name:
 
 `ClassLoader`是一个抽象类，其后所有的类加载器都继承自ClassLoader（不包括引导类加载器）。
 
-![](../assets/images/classloader依赖关系.png)
+![](https://leeyusky.github.io/assets/images/classloader依赖关系.png)
 
 ##### loadClass(String)
 
-```
+```java
 protected Class<?> loadClass(String name, boolean resolve)
     throws ClassNotFoundException
 {
@@ -210,7 +210,7 @@ protected Class<?> findClass(String name) throws ClassNotFoundException {
 
 ##### ClassLoader::getSystemResource()
 
-```
+```java
 public static URL getSystemResource(String name) {
     ClassLoader system = getSystemClassLoader();
     if (system == null) {
@@ -225,7 +225,7 @@ public static URL getSystemResource(String name) {
 
 ##### Class<T>#getResource()
 
-```
+```java
 public java.net.URL getResource(String name) {
     name = resolveName(name);
     ClassLoader cl = getClassLoader0();
@@ -270,7 +270,7 @@ private String resolveName(String name) {
 
 ##### ClassLoader#getResource()
 
-```
+```java
 public URL getResource(String name) {
     URL url;
     if (parent != null) {
